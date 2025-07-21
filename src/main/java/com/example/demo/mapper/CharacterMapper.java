@@ -50,7 +50,7 @@ public class CharacterMapper {
         );
     }
 
-    public Character toEntity(
+    public Character toEntity(  //This is for external purposes
             ExternalCharacterDTO externalCharacterDTO,
             Location origin,
             Location location

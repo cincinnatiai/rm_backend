@@ -14,7 +14,8 @@ import lombok.Setter;
 @Table(name = "characters")
 public class Character {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private Long characterId;
 
     private String name;

@@ -8,6 +8,8 @@ import com.example.demo.mapper.CharacterMapper;
 import com.example.demo.repository.CharacterRepository;
 import com.example.demo.repository.LocationRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -67,5 +69,11 @@ public class CharacterServiceImpl implements CharacterService{
         characterToUpdate.setLocation(characterDTO.getLocation());
         characterRepository.save(characterToUpdate);
         return characterMapper.characterToCharacterDto(characterToUpdate);
+    }
+
+    @Override
+    public Page<CharacterDTO> getCharactersPage(Pageable pageable) {
+        Page<Character> characterEntityPage = characterRepository.findAll(pageable);
+        return characterEntityPage.map(characterMapper::characterToCharacterDto);
     }
 }

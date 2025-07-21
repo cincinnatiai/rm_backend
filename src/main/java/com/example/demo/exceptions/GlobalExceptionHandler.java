@@ -11,7 +11,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CharacterNotFoundException.class)
     public ResponseEntity<CustomErrorResponse> handleCharacterNotFound(CharacterNotFoundException characterNotFoundException){
         CustomErrorResponse error = new CustomErrorResponse(characterNotFoundException.getMessage(), HttpStatus.BAD_REQUEST.value());
-        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(PropertiesIncompleteException.class)
@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<CustomErrorResponse> handleGeneric(Exception exception) {
-        exception.printStackTrace();
+        //exception.printStackTrace();
         CustomErrorResponse error = new CustomErrorResponse(
                 ErrorMessage.INTERNAL_SERVER_ERROR.getMessage(),
                 HttpStatus.INTERNAL_SERVER_ERROR.value()
